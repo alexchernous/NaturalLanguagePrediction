@@ -2,7 +2,9 @@ NaturalLanguagePrediction
 =========================
 Description:
 ------------
-An on going project of single word and sentence prediction from a statistical language model using a 2nd order (and 1st order where applicable) Markov Model approach
+An on going project of single word and sentence prediction from a statistical language model using a 2nd order (and 1st order where applicable) Markov Model approach.
+
+This project can also be found [in this repo](https://github.com/alexchernous/Projects) with original commits as well as other small work. I've since separated that repo into its own repos for each type of project.
 
 Version and Info:
 -----------------
