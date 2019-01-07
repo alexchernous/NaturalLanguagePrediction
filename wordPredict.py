@@ -6,6 +6,9 @@ from myParser import StringProcessor
 
 '''
 need prediction to be based on weighted random choice not max()
+
+need smoothing for unseen words, so program doesn't stop if you enter words not in model
+https://en.wikipedia.org/wiki/N-gram#Smoothing_techniques
 '''
 
 
@@ -46,6 +49,9 @@ class WordPredict:
                 lm_bucket = self.lmTri["__2ndWrd__"][self.user_input[-1]]
 
         # most_prob.. can be instance variable #
+        '''
+        NEED WEIGHTED RANDOM CHOICE NOT MAX
+        '''
         most_probable_choices = [k for k,v in lm_bucket.items() if v == max(lm_bucket.values())]
         print('all choices:', lm_bucket.items() )
         print('most_probable_choices:', most_probable_choices)
@@ -93,6 +99,9 @@ class WordPredict:
         new_choices = [x for x in self.lmTri[self.user_input].items() if x[0] != next_word]
         print('repeat:', new_choices)
 
+        '''
+        NEED WEIGHTED RANDOM CHOICE NOT MAX
+        '''
         most_probable_choices = [k for k,v in new_choices if v == max(new_choices,key=itemgetter(1))[1]]
         print('repeat:', most_probable_choices)
 
