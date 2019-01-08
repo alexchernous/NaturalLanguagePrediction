@@ -15,10 +15,10 @@ https://en.wikipedia.org/wiki/N-gram#Smoothing_techniques
 class WordPredict:
 
     def __init__(self, triFile, biFile):
-        file = open(f"{triFile}.txt", "r")
+        file = open(f"Models/{triFile}.txt", "r")
         dict_bytes = file.read()
         self.lmTri = json.loads(dict_bytes)
-        file = open(f"{biFile}.txt", "r")
+        file = open(f"Models/{biFile}.txt", "r")
         dict_bytes = file.read()
         self.lmBi = json.loads(dict_bytes)
 

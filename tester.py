@@ -1,8 +1,8 @@
 from wordPredict import WordPredict
 
-TrainingSet = "Book"
+TrainingSet = "Literature"
 
-wp = WordPredict(f"lm{TrainingSet}TrigramProb", f"lm{TrainingSet}BigramProb")
+wp = WordPredict(f"Models/lm{TrainingSet}TrigramProb", f"Models/lm{TrainingSet}BigramProb")
 
 while(True):
     user_input = input("sentece/word: ")
