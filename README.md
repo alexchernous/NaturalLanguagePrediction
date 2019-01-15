@@ -12,7 +12,7 @@ Version and Info:
 * literature used to train models: [A Tale of Two Cities](https://www.gutenberg.org/ebooks/98) from [Project Gutenberg](https://www.gutenberg.org/wiki/Main_Page)
 * imports:
 ```python
-import tkinter, re, urllib.request, json, random, math
+import tkinter, re, urllib.request, json, random, math, numpy
 from operator import itemgetter
 ```
 * models are included in the 4 *.txt* files

@@ -134,8 +134,8 @@ class Application(tk.Tk):
         self.createWidgets()
 
 
-TrainingSet = "Book"
-wp = WordPredict(f"lm{TrainingSet}TrigramProb", f"lm{TrainingSet}BigramProb")
+TrainingSet = "Literature"
+wp = WordPredict(TrainingSet)
 app = Application()
 app.mainloop()
 

@@ -2,7 +2,7 @@ from wordPredict import WordPredict
 
 TrainingSet = "Literature"
 
-wp = WordPredict(f"Models/lm{TrainingSet}TrigramProb", f"Models/lm{TrainingSet}BigramProb")
+wp = WordPredict(TrainingSet)
 
 while(True):
     user_input = input("sentece/word: ")
