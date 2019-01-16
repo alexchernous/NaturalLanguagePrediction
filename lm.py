@@ -1,7 +1,27 @@
-'''INTERFACE NEEDED FOR THESE 2 CLASSES
-'''
+import abc
 
-class SecondOrderMarkovModel:
+class SLM(abc.ABC):
+    '''
+    abstract class to aid as a kind of interface (blueprint)
+    '''
+    @abc.abstractclassmethod
+    def __init__(self):
+        pass
+
+    @abc.abstractclassmethod
+    def getLMCount(self):
+        pass
+
+    @abc.abstractclassmethod
+    def getLMProb(self):
+        pass
+
+    @abc.abstractclassmethod
+    def update(self, sent_chunk):
+        pass
+
+
+class SecondOrderMarkovModel(SLM):
     """2nd order markov language model
     1st word prob dist + 2nd word __BIGRAM__ dist + all else trigrams"""
 
@@ -114,7 +134,7 @@ class SecondOrderMarkovModel:
 
 
 
-class FirstOrderMarkovModel:
+class FirstOrderMarkovModel(SLM):
     """1st order markov language model
     1st word prob dist + 2nd word __BIGRAM__ dist"""
 

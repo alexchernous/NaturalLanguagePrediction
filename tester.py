@@ -1,6 +1,6 @@
 from wordPredict import WordPredict
 
-TrainingSet = "Literature"
+TrainingSet = "Wiki"
 
 wp = WordPredict(TrainingSet)
 

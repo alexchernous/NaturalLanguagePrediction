@@ -6,7 +6,7 @@ class Application(tk.Tk):
         user_input = self.inputTextBox.get("1.0",'end-1c')
         print(user_input)
         if not (user_input == ' ' or user_input == ''):
-            prediction = predictionFunction(user_input) + "\n"
+            prediction = predictionFunction(user_input) + "\n\n"
             print(prediction)
             self.outputText.config(state="normal")
             self.outputText.insert(tk.END, prediction)
@@ -16,7 +16,7 @@ class Application(tk.Tk):
 
     def displayPredictionSent(self, predictionFunction):
         prediction = predictionFunction()
-        prediction.append("\n")
+        prediction.append("\n\n")
         self.outputText.config(state="normal")
         self.outputText.insert(tk.END, ' '.join(prediction))
         self.outputText.see(tk.END)
@@ -30,7 +30,7 @@ class Application(tk.Tk):
             return self.displayPredictionSent(wp.runSentence_Predict)
 
         prediction = predictionFunction(user_input)
-        prediction.append("\n")
+        prediction.append("\n\n")
         self.outputText.config(state="normal")
         self.outputText.insert(tk.END, ' '.join(prediction))
         self.outputText.see(tk.END)
@@ -134,7 +134,7 @@ class Application(tk.Tk):
         self.createWidgets()
 
 
-TrainingSet = "Literature"
+TrainingSet = "Wiki"
 wp = WordPredict(TrainingSet)
 app = Application()
 app.mainloop()

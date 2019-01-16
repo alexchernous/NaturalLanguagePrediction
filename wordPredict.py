@@ -6,7 +6,6 @@ from myParser import StringProcessor
 import numpy
 
 '''
-rewrite the 3 prediction/choice/repetition functions cuz we don't need all 3 anymore
 
 need smoothing for unseen words, so program doesn't stop if you enter words not in model
 https://en.wikipedia.org/wiki/N-gram#Smoothing_techniques
@@ -49,57 +48,35 @@ class WordPredict:
 
                 lm_bucket = self.lmTri["__2ndWrd__"][self.user_input[-1]]
 
-        # most_prob.. can be instance variable #
+        #random weighted choice (numpy)
         choice = numpy.random.choice(list(lm_bucket.keys()),p=list(lm_bucket.values()))
-        #most_probable_choices = [k for k,v in lm_bucket.items() if v == max(lm_bucket.values())]
-        print('all choices:', lm_bucket.items() )
-        #print('most_probable_choices:', most_probable_choices)
+        print('all choices:', lm_bucket.items())
         print('choice:', choice)
 
-        return self.choose(choice)
+        return self.handle_repetition(choice)
 
 
-    def choose(self, next_word):
-
-        #next_word = most_probable_choices[0]
+    def handle_repetition(self, next_word):
 
         #print('choose (before repeat check):', next_word)
 
         #repetition check
         # if the __BIGRAM__ already exists..
         if next_word in self.input_hist and self.input_hist[self.input_hist.index(next_word)-1] == self.user_input:
-            #print("repetition found")
-            #if len(most_probable_choices) < 2:
-                #next_word = random.choice(list(self.lmTri.keys()))
-                #print('choose:', next_word)
-                #return next_word
+            #remove the next word from the list of choices, we want to avoid loop
+            new_choices = dict([x for x in self.lmTri[self.user_input].items() if x[0] != next_word])
+            print('repeat:', new_choices)
 
-            return self.handle_repetition(next_word)
+            #random weighted choice (numpy)
+            new_choice = numpy.random.choice(list(new_choices.keys()),p=list(new_choices.values()))
+            print('repeat:', new_choice)
 
-        #elif len(most_probable_choices) > 1:
-            #'''
-            #will probably want to have this not just random but random given a certain POS tag
-            #but for now it's just random if we have multiple choices with the same prob
-            #'''
-            #next_word = random.choice(most_probable_choices)
-            #print('choose:', next_word)
-            #return next_word
+            return self.handle_repetition(new_choice)
+
 
         print('choose (after repeat check):', next_word)
         return next_word
 
-
-    def handle_repetition(self, next_word):
-        #remove the next word from the list of choices, we want to avoid loop
-        # and pass it back to the function
-        new_choices = dict([x for x in self.lmTri[self.user_input].items() if x[0] != next_word])
-        print('repeat:', new_choices)
-
-        choice = numpy.random.choice(list(new_choices.keys()),p=list(new_choices.values()))
-        #most_probable_choices = [k for k,v in new_choices if v == max(new_choices,key=itemgetter(1))[1]]
-        print('repeat:', choice)
-
-        return self.choose(choice)
 
 
     def runFinish_Predict(self, user_input):

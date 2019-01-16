@@ -11,6 +11,8 @@ books = ["http://www.gutenberg.org/files/98/98-0.txt",
 
 simpleSite = ["https://motherfuckingwebsite.com/"]
 
+wikipedia = ["https://en.wikipedia.org/wiki/N-gram"]
+
 scienceSites = ["https://en.wikipedia.org/wiki/Computer_science",
         "https://en.wikipedia.org/wiki/Computational_linguistics",
         "https://en.wikipedia.org/wiki/Linguistics",
@@ -25,14 +27,14 @@ scienceSites = ["https://en.wikipedia.org/wiki/Computer_science",
         "https://en.wikipedia.org/wiki/Galaxy",
         "https://en.wikipedia.org/wiki/Star"]
 
-TrainingSet = 'Literature'
+TrainingSet = 'Wiki'
 
 
 modelTri = SecondOrderMarkovModel()
 modelBi = FirstOrderMarkovModel()
-parser = MyHTMLParser(isWiki=False)
+parser = MyHTMLParser(isWiki=True)
 
-for url in books:
+for url in wikipedia:
 
     print('Now processing: ' + url)
 
